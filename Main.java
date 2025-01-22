@@ -6,6 +6,10 @@ public class main {
         return 1;
     }
     public static void main(String args[]) {
+        Scanner sc=new Scanner(Scanner.in);
+        String name = sc.next();
+
+        printMyName(name);//call kiya function ko
 
     }
 }
