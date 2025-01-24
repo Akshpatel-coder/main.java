@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.*;
 
 public class Main {
 
@@ -6,8 +6,8 @@ public class Main {
       System.out.println(name);
       return ;
    }
-   public static void main(String args[]) {git 
-      Scanner sc=new Scanner(Scanner.in);
+   public static void main(String args[]) {
+      Scanner sc=new Scanner();
       String name = sc.next();
 
       printMyName(name);//call kiya function ko
