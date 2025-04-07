@@ -34,7 +34,6 @@ public class java12 {
        // System.out.println(modifiedName.indexOf("sh"));
        // System.out.println(modifiedName.indexOf("hh", 4));
        // System.out.println(modifiedName.lastIndexOf("hhh" , 4));
-
        // System.out.println(name.equals("Aksh"));
         System.out.println(name.equalsIgnoreCase("Aksh"));
 
