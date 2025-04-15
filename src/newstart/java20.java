@@ -1,10 +1,10 @@
+package newstart;
 
+ import java.util.Scanner; // Importing Scanner for user input
 
-    import java.util.Scanner; // Importing Scanner for user input
-    public class java20 {
+    public class java20{
 
-
-        public static void main(String[] args) {
+    public static void main(String[] args) {
             // Create a Scanner object for input
             Scanner scanner = new Scanner(System.in);
 
@@ -24,6 +24,6 @@
 
             // Close the Scanner
             scanner.close();
-        }ygr
+        }
     }
 
