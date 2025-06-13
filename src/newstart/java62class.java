@@ -1,6 +1,6 @@
 package newstart;
 
-class Employee{
+class Employee1{
     int id;
     int salary;
     String name;
@@ -11,14 +11,14 @@ class Employee{
      }
     // public int getSalary() {
     //     return  salary;
- //    }
+ //     }
 }
 
 public class java62class {
     public static void main(String[] args) {
         System.out.println("This is our custom class");
-        Employee Aksh = new Employee();
-        Employee Alex = new Employee();
+        Employee1 Aksh = new Employee1();
+        Employee1 Alex = new Employee1();
         // Setting Attributes for Aksh
         Aksh.id = 12;
         Aksh.salary = 80;
