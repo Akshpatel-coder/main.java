@@ -37,9 +37,9 @@ class Cylinder {
     }
 }
 
-public Rectangle{
 
-}
+
+
 
 public class java67 {
     public static void main(String[] args) {
