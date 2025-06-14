@@ -1,6 +1,8 @@
 package newstart;
 
 
+import java.awt.*;
+
 class Employee {
 int salary;
 String name;
@@ -49,7 +51,24 @@ class Johny{
         System.out.println("Firing on  the enemy");
     }
 }
+class  Rectangle{
+    private int length;
+    private  int breadth;
+
+    public Rectangle() {
+        this.length = 4;
+        this.breadth = 5;
+    }
+
+    public Rectangle(final int length, final int breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+}
 public class java63 {
+
+
     public static void main(String[] args) {
         /*
         //  1
@@ -74,12 +93,15 @@ public class java63 {
         System.out.println(sq.area());
         System.out.println(sq.perimeter());
 
-         */
+
         // 4
       Johny player1 = new Johny();
       player1.fire();
       player1.run();
       player1.hit();
 
+
+         */
+        Rectangle r = new Rectangle();
     }
 }
