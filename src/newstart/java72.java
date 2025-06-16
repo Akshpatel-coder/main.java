@@ -18,7 +18,7 @@ class B extends A{
         System.out.println("I am  method 3 of class  B");
     }
 }
-public class java73 {
+public class java72 {
     public static void main(String[] args) {
         A a = new A();
         a.meth2();
