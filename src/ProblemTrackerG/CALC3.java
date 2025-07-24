@@ -1,14 +1,14 @@
 package ProblemTrackerG;
 import java.util.Scanner;
-public class CALC2 {
 
+public class CALC3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Simple Calculator!");
+        System.out.println("Welcome to the OOP ");
         System.out.println("1. Basic Calculator");
         System.out.println("2. Scientific Calculator");
-        System.out.print("Enter your choice: ");
+        System.out.println("Enter your choice: ");
 
         int calcType = sc.nextInt();
 
@@ -26,10 +26,9 @@ public class CALC2 {
 
     public static void basicCalc() {
         Scanner sc = new Scanner(System.in);
-        int choice;
-        double num1, num2, result;
-
-
+        int choice = 0;
+        int num1, num2;
+        double result = 0, lastResult = 0;
         System.out.println("\nBasic Calculator Operations:");
 
         do {
@@ -37,20 +36,24 @@ public class CALC2 {
             System.out.println("2. Subtract");
             System.out.println("3. Multiply");
             System.out.println("4. Divide");
-
+            System.out.println("5. Get last result");
             System.out.println("0. Exit");
 
+
+            System.out.println("Enter your choice: ");
             choice = sc.nextInt();
 
             if (choice == 0) {
-                System.out.println("Exiting Calculator....");
-                return;
+                System.out.println("Exiting Basic Calculator...");
+                break;
+            } else if (choice == 5) {
+                System.out.println("Last Result: " + lastResult);
+                continue;
             }
-            System.out.println("Enter first number: ");
+            System.out.println("Enter first number");
             num1 = sc.nextInt();
             System.out.println("Enter second number");
             num2 = sc.nextInt();
-
 
             switch (choice) {
                 case 1:
@@ -70,50 +73,60 @@ public class CALC2 {
 
                 case 4:
                     if (num2 == 0) {
-                        System.out.println("Error: Cant divide by Zero");
+                        System.out.println("Error!= Cant divide by zero");
+
                     } else {
                         result = num1 / num2;
                         System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
 
                     }
                     break;
-
-
                 default:
                     System.out.println("Invalid choice!");
             }
-        }
-        while (choice != 0);
+            System.out.println("Result: " + result);
+            lastResult = result;
+
+        } while (choice != 0);
 
     }
 
     public static void scientificCalc() {
         Scanner sc = new Scanner(System.in);
         int choice;
-        double num1 = 0, num2 = 0, result;
 
-        System.out.println("\nScientific Calculator Operations:");
+        double num1 = 0, num2 = 0;
+        double result = 0, lastResult = 0;
+
+        System.out.println("\nScientific Calculator Operation: ");
         do {
             System.out.println("1. Add");
-            System.out.println("2. Substract");
+            System.out.println("2. Subtract");
             System.out.println("3. Multiply");
             System.out.println("4. Divide");
             System.out.println("5. Power");
-            System.out.println("6. Modulas");
+            System.out.println("6. Modulus");
             System.out.println("7. Square Root");
+            System.out.println("8. Get last result");
             System.out.println("0. Exit");
-            System.out.println("Enter choice: ");
+            System.out.println("Enter your choice:  ");
+
 
             choice = sc.nextInt();
             if (choice == 0) {
-                System.out.println("Exiting Calculator...");
-                return;
+                System.out.println("Exiting Basic Calculator...");
+                break;
+            } else if (choice == 8) {
+                System.out.println("Last Result: " + lastResult);
+                continue;
             }
-            System.out.println("Enter first number: ");
-            num1 = sc.nextInt();
-            System.out.println("Enter second number");
-            num2 = sc.nextInt();
 
+            if (choice >= 1 && choice <= 4) {
+                System.out.print("Enter first number: ");
+                num1 = sc.nextDouble();
+                System.out.print("Enter second number: ");
+                num2 = sc.nextDouble();
+            }
             switch (choice) {
                 case 1:
                     result = num1 + num2;
@@ -132,7 +145,8 @@ public class CALC2 {
 
                 case 4:
                     if (num2 == 0) {
-                        System.out.println("Error: Cant divide by zero!");
+                        System.out.println("Error!= Cant divide by zero");
+
                     } else {
                         result = num1 / num2;
                         System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
@@ -140,18 +154,18 @@ public class CALC2 {
                     }
                     break;
                 case 5:
-                    System.out.println("Enter base: ");
+                    System.out.println("Enter  base: ");
                     num1 = sc.nextInt();
                     System.out.println("Enter exponent: ");
                     num2 = sc.nextInt();
                     result = Math.pow(num1, num2);
-                    System.out.println("Result: " + num1 + " ^ " + num2 + " = " + result);
                     break;
+
                 case 6:
-                    System.out.print("Enter first number: ");
+                    System.out.println("Enter first number: ");
                     num1 = sc.nextInt();
-                    System.out.print("Enter second number: ");
-                    num2 = sc.nextDouble();
+                    System.out.println("Enter second  number");
+                    num2 = sc.nextInt();
                     result = num1 % num2;
                     System.out.println("Result: " + num1 + " % " + num2 + " = " + result);
                     break;
@@ -163,12 +177,10 @@ public class CALC2 {
 
                     break;
                 default:
-                    System.out.println("Invalid operation");
+                    System.out.println("Invalid Operator");
 
             }
-            System.out.println("Result: ");
-
-        } while (choice !=0);
+        } while (choice != 0) ;
 
     }
 }
