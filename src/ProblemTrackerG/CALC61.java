@@ -2,7 +2,7 @@ package ProblemTrackerG;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CALC6 {
+public class CALC61 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -56,6 +56,7 @@ public class CALC6 {
                 if (history.isEmpty()) {
                     System.out.println("No calculations recorded yet");
                 } else {
+
                     for (int i = 0; i < history.size(); i++) {
                         System.out.println((i + 1) + ". " + history.get(i));
                     }
@@ -72,6 +73,8 @@ public class CALC6 {
                     System.out.println("\nNo history entries to clear!");
                     continue;
                 }
+
+
                 System.out.println("\nCurrent History:");
                 for (int i = 0; i < history.size(); i++) {
                     System.out.println((i + 1) + ". " + history.get(i));
