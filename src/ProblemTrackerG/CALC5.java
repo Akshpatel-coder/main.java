@@ -111,7 +111,7 @@ public class CALC5 {
                     continue;
             }
 
-            //   System.out.println("Result: " + result);
+
             history.add(entry);
             lastResult = result;
 
