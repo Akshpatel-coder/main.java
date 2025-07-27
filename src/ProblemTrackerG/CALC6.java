@@ -205,7 +205,7 @@ public class CALC6 {
                 num2 = sc.nextDouble();
             }
 
-               switch (choice) {
+            switch (choice) {
 
 
                 case 1:
@@ -276,7 +276,7 @@ public class CALC6 {
             if (!entry.isEmpty()) {
                 history.add(entry);
             }
-        //    lastResult = result;
+            //    lastResult = result;
         } while (choice != 0);
     }
 }
