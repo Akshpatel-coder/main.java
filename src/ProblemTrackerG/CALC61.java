@@ -1,9 +1,9 @@
 package ProblemTrackerG;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CALC61 {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -13,6 +13,7 @@ public class CALC61 {
         System.out.println("2. Scientific Calculator");
         System.out.print("\nEnter your choice: ");
         int calcType = sc.nextInt();
+
 
         switch (calcType) {
             case 1:
@@ -70,7 +71,7 @@ public class CALC61 {
             }
             else if (choice == 7) {
                 if (history.isEmpty()) {
-                    System.out.println("\nNo history entries to clear!");
+                    System.out.println("No history entries to clear!");
                     continue;
                 }
 
@@ -133,7 +134,7 @@ public class CALC61 {
             if (!entry.isEmpty()) {
                 history.add(entry);
             }
-            lastResult = result;
+            //  lastResult = result;
 
         } while (choice != 0);
     }
@@ -202,7 +203,7 @@ public class CALC61 {
             }
 
             String entry = "";
-            if (choice >= 1 && choice <= 4 || choice == 6) {
+            if (choice >= 1 && choice <= 4 ){
                 System.out.print("\nEnter first number: ");
                 num1 = sc.nextDouble();
                 System.out.print("Enter second number: ");
