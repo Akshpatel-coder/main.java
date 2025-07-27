@@ -34,6 +34,7 @@ public class CALC6 {
         double result = 0, lastResult = 0;
 
         do {
+
             System.out.println("\nBasic Calculator Operations:");
             System.out.println("1. Add");
             System.out.println("2. Subtract");
@@ -95,29 +96,29 @@ public class CALC6 {
             switch (choice) {
                 case 1:
                     result = num1 + num2;
-                    System.out.println("\nResult: " + num1 + " + " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
                     entry = "Addition: " + num1 + " + " + num2 + " = " + result;
                     break;
 
                 case 2:
                     result = num1 - num2;
-                    System.out.println("\nResult: " + num1 + " - " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
                     entry = "Subtraction: " + num1 + " - " + num2 + " = " + result;
                     break;
 
                 case 3:
                     result = num1 * num2;
-                    System.out.println("\nResult: " + num1 + " * " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
                     entry = "Multiplication: " + num1 + " * " + num2 + " = " + result;
                     break;
 
                 case 4:
                     if (num2 == 0) {
-                        System.out.println("\nError: Cannot divide by zero");
+                        System.out.println("Error: Cannot divide by zero");
                         entry = "";
                     } else {
                         result = num1 / num2;
-                        System.out.println("\nResult: " + num1 + " / " + num2 + " = " + result);
+                        System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
                         entry = "Division: " + num1 + " / " + num2 + " = " + result;
                     }
                     break;
@@ -173,12 +174,12 @@ public class CALC6 {
             }
             else if (choice == 9) {
                 history.clear();
-                System.out.println("\nHistory cleared successfully!");
+                System.out.println("History cleared successfully!");
                 continue;
             }
             else if (choice == 10) {
                 if (history.isEmpty()) {
-                    System.out.println("\nNo history entries to clear!");
+                    System.out.println("No history entries to clear!");
                     continue;
                 }
                 System.out.println("\nCurrent History:");
@@ -186,7 +187,7 @@ public class CALC6 {
                     System.out.println((i + 1) + ". " + history.get(i));
                 }
 
-                System.out.print("\nEnter the entry number to delete: ");
+                System.out.print("Enter the entry number to delete: ");
                 int del = sc.nextInt();
                 if (del > 0 && del <= history.size()) {
                     String removed = history.remove(del - 1);
@@ -210,62 +211,62 @@ public class CALC6 {
 
                 case 1:
                     result = num1 + num2;
-                    System.out.println("\nResult: " + num1 + " + " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
                     entry = "Addition: " + num1 + " + " + num2 + " = " + result;
                     break;
 
                 case 2:
                     result = num1 - num2;
-                    System.out.println("\nResult: " + num1 + " - " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
                     entry = "Subtraction: " + num1 + " - " + num2 + " = " + result;
                     break;
 
                 case 3:
                     result = num1 * num2;
-                    System.out.println("\nResult: " + num1 + " * " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
                     entry = "Multiplication: " + num1 + " * " + num2 + " = " + result;
                     break;
 
                 case 4:
                     if (num2 == 0) {
-                        System.out.println("\nError: Cannot divide by zero");
+                        System.out.println("Error: Cannot divide by zero");
                         entry = "";
                     } else {
                         result = num1 / num2;
-                        System.out.println("\nResult: " + num1 + " / " + num2 + " = " + result);
+                        System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
                         entry = "Division: " + num1 + " / " + num2 + " = " + result;
                     }
                     break;
                 case 5:
-                    System.out.print("\nEnter base: ");
+                    System.out.print("Enter base: ");
                     num1 = sc.nextDouble();
                     System.out.print("Enter exponent: ");
                     num2 = sc.nextDouble();
                     result = Math.pow(num1, num2);
-                    System.out.println("\nResult: " + num1 + " ^ " + num2 + " = " + result);
+                    System.out.println("Result: " + num1 + " ^ " + num2 + " = " + result);
                     entry = "Power: " + num1 + " ^ " + num2 + " = " + result;
                     break;
 
                 case 6:
                     if (num2 == 0) {
-                        System.out.println("\nError: Cannot divide by zero");
+                        System.out.println("Error: Cannot divide by zero");
                         entry = "";
                     } else {
                         result = num1 % num2;
-                        System.out.println("\nResult: " + num1 + " % " + num2 + " = " + result);
+                        System.out.println("Result: " + num1 + " % " + num2 + " = " + result);
                         entry = "Modulus: " + num1 + " % " + num2 + " = " + result;
                     }
                     break;
 
                 case 7:
-                    System.out.print("\nEnter number: ");
+                    System.out.print("Enter number: ");
                     num1 = sc.nextDouble();
                     if (num1 < 0) {
-                        System.out.println("\nError: Cannot square root negative number");
+                        System.out.println("Error: Cannot square root negative number");
                         entry = "";
                     } else {
                         result = Math.sqrt(num1);
-                        System.out.println("\nResult: sqrt(" + num1 + ") = " + result);
+                        System.out.println("Result: sqrt(" + num1 + ") = " + result);
                         entry = "Square Root: sqrt(" + num1 + ") = " + result;
                     }
                     break;
