@@ -72,7 +72,7 @@ public class CALC65 {
                 System.out.println("2. Subtract");
                 System.out.println("3. Multiply");
                 System.out.println("4. Divide");
-                System.out.println("5, Get last result");
+                System.out.println("5. View history");
                 System.out.println("6. Show all operations");
                 System.out.println("7. view history");
                 System.out.println("0. Exit");
