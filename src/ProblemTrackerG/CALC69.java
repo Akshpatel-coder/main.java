@@ -3,8 +3,8 @@ package ProblemTrackerG;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class C {
-    // Operation counters (added)
+public class CALC69 {
+
     private static int adds = 0;
     private static int subtracts = 0;
     private static int multiplies = 0;
@@ -12,22 +12,26 @@ public class C {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String name = sc.nextLine();
+        System.out.println("Hello, " + name + " ! Let's start calculating");
 
         System.out.println("Welcome to the OOP Calculator");
         System.out.println("1. Basic Calculator");
         System.out.println("2. Scientific Calculator");
-        System.out.println("Enter your choice: ");
-        int calcType = sc.nextInt();
+        System.out.println("Eter your choice: ");
 
+        int calcType = sc.nextInt();
         switch (calcType) {
             case 1:
-                basicCalc();
-                break;
+            basicCalc();
+            break;
+
             case 2:
                 scientificCalc();
-                break;
             default:
-                System.out.println("Invalid choice!");
+                System.out.println("Invalid choice!!!");
+
         }
     }
 
@@ -39,53 +43,73 @@ public class C {
         double result;
 
         do {
-            System.out.println("\nBasic Calculator operations: ");
+            System.out.println("\nBasic calculator operations: ");
             System.out.println("1. Add");
             System.out.println("2. Subtract");
             System.out.println("3. Multiply");
             System.out.println("4. Divide");
             System.out.println("5. View history");
-            System.out.println("6. Show Operation Stats");
+            System.out.println("6. Clear history");
             System.out.println("7. Compare numbers");
-            System.out.println("8. Switch calculator mode");
+            System.out.println("8. Show operation stats");
+            System.out.println("9. Switch calculator mode");
+            System.out.println("10. Show all operations");
             System.out.println("0. Exit");
-
-            System.out.print("Choose operation: ");
+            System.out.println("Choose operations: ");
             choice = sc.nextInt();
 
-            if (choice == 0) {
-                System.out.println("Exiting...");
+            if(choice == 0) {
+                System.out.println("Exiting.......");
                 break;
             } else if (choice == 5) {
-                System.out.println("\n----History----");
-                if (history.isEmpty()) {
+                System.out.println("\n--history--");
+                if(history.isEmpty()) {
                     System.out.println("No history yet");
                 } else {
                     for (int i = 0; i < history.size(); i++) {
                         System.out.println((i + 1) + ". " + history.get(i));
                     }
                 }
+
             } else if (choice == 6) {
-                System.out.println("\n== Operation Statistics ==");
-                System.out.println("Additions: " + adds);
-                System.out.println("Subtractions: " + subtracts);
+                history.clear();
+                System.out.println("History cleared");
+                continue;
+
+            } else if (choice == 8) {
+                System.out.println("\nOperation Statics");
+                System.out.println("Addition: " + adds);
+                System.out.println("Substractions: " + subtracts);
                 System.out.println("Multiplications: " + multiplies);
                 System.out.println("Divisions: " + divides);
-                System.out.print("\nPress Enter to continue...");
+                System.out.println("\nPress Enter to continue......");
                 sc.nextLine();
                 sc.nextLine();
-                continue;
-            } else if (choice == 8) {
+            } else if(choice == 9) {
                 System.out.println("\nAvailable calculator modes: ");
-                System.out.println("1. Basic Calculator");
-                System.out.println("2. Scientific Calculator");
-                System.out.print("Enter choice (1-2): ");
+                System.out.println("1. Basic clculator");
+                System.out.println("2. Scientific calculator");
+                System.out.println("Enter choicr (1-2): ");
                 int newChoice = sc.nextInt();
-                if (newChoice == 2) {
+                if(newChoice == 2) {
                     scientificCalc();
                     return;
                 }
                 continue;
+            } else if (choice == 10) {
+                System.out.println("\nBasic calculator operations: ");
+                System.out.println("1. Add");
+                System.out.println("2. Subtract");
+                System.out.println("3. Multiply");
+                System.out.println("4. Divide");
+                System.out.println("5. View history");
+                System.out.println("6. Clear history");
+                System.out.println("7. Compare numbers");
+                System.out.println("8. Show operation stats");
+                System.out.println("9. Switch calculator mode");
+                System.out.println("10. Show all operations");
+                System.out.println("0. Exit");
+                break;
             }
 
             if (choice >= 1 && choice <= 4 || choice == 7) {
@@ -100,14 +124,16 @@ public class C {
                         result = num1 + num2;
                         System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
                         adds++;
-                        entry = num1 + " + " + num2 + " = " + result;
+                        entry = num1 + "  + " + num2 + " = " + result;
                         break;
+
                     case 2:
                         result = num1 - num2;
                         System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
                         subtracts++;
                         entry = num1 + " - " + num2 + " = " + result;
                         break;
+
                     case 3:
                         result = num1 * num2;
                         System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
@@ -142,13 +168,14 @@ public class C {
                 }
             }
         } while (choice != 0);
-    }
+                }
 
-    public static void scientificCalc() {
+
+ public static void scientificCalc() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> history = new ArrayList<>();
+        ArrayList<String>history = new ArrayList<>();
         int choice;
-        double num1, num2, result;
+        double num1 , num2 , result;
 
         do {
             System.out.println("\nScientific Calculator");
@@ -164,15 +191,16 @@ public class C {
             System.out.println("10. Show all operations");
             System.out.println("11. Switch calculator mode");
             System.out.println("12. Compare numbers");
-            System.out.println("13. Show Operation Stats");
+            System.out.println("13. Show operations stats");
             System.out.println("0. Exit");
 
-            System.out.print("Choose operation: ");
+            System.out.println("Choose operations: ");
             choice = sc.nextInt();
 
             if (choice == 0) {
                 System.out.println("Exiting...");
                 break;
+
             } else if (choice == 8) {
                 System.out.println("\n----History----");
                 if (history.isEmpty()) {
@@ -205,16 +233,12 @@ public class C {
                 sc.nextLine();
                 continue;
             }
-
-            if ((choice >= 1 && choice <= 6) || choice == 12) {
-                System.out.print("Enter first number: ");
+            if (choice >= 1 && choice <= 7 || choice == 12) {
+                System.out.println("Enter first number: ");
                 num1 = sc.nextDouble();
-                if (choice != 7) {
-                    System.out.print("Enter second number: ");
-                    num2 = sc.nextDouble();
-                } else {
-                    num2 = 0;
-                }
+                System.out.println("Enter second number: ");
+                num2 = sc.nextDouble();
+
                 String entry = "";
 
                 switch (choice) {
@@ -249,17 +273,17 @@ public class C {
                     case 5:
                         result = Math.pow(num1, num2);
                         System.out.println("Result: " + num1 + " ^ " + num2 + " = " + result);
-                        entry = num1 + " ^ " + num2 + " = " + result;
+
                         break;
                     case 6:
                         result = num1 % num2;
                         System.out.println("Result: " + num1 + " % " + num2 + " = " + result);
-                        entry = num1 + " % " + num2 + " = " + result;
+
                         break;
                     case 7:
                         result = Math.sqrt(num1);
                         System.out.println("Result: sqrt(" + num1 + ") = " + result);
-                        entry = "sqrt(" + num1 + ") = " + result;
+
                         break;
                     case 12:
                         if (num1 > num2) {
@@ -269,7 +293,7 @@ public class C {
                         } else {
                             System.out.println(num1 + " is equal to " + num2);
                         }
-                        entry = "Comparison: " + num1 + " and " + num2;
+
                         break;
                 }
                 if (!entry.isEmpty()) {
@@ -277,5 +301,5 @@ public class C {
                 }
             }
         } while (choice != 0);
-    }
-}
+        }
+ }
