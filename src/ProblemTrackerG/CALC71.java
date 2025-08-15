@@ -7,7 +7,7 @@ import java.util.Scanner;
 class PriorityItem<T> {
     private T item;
     int priority;
-     long counter;
+    long counter;
 
     public PriorityItem(T item, int priority, long counter) {
         this.item = item;
@@ -397,7 +397,7 @@ public class CALC71 {
                         System.out.println(res + " (priority " + item.getPriority() + ")");
                     }
                 }
-                     continue;
+                continue;
             }
 
             if (choice >= 1 && choice <= 6 || choice == 11) {
@@ -455,7 +455,7 @@ public class CALC71 {
                 else comp = " is equal to ";
                 System.out.println("Result: " + num1 + comp + num2);
 
-               } else {
+            } else {
                 System.out.println("Invalid choice");
             }
 

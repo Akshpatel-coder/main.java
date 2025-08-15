@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class C {
+public class CALC72 {
     static class Operation {
         double num1, num2, result;
         String operation;
@@ -13,12 +13,15 @@ public class C {
             this.num1 = num1;
             this.num2 = num2;
             this.result = result;
+
             this.operation = operation;
+
         }
     }
+
     private static int getValidIntInput(Scanner sc) {
         while (!sc.hasNextInt()) {
-            System.out.println("Please enter a valid integer!");
+            System.out.println("Please enter a valid integer!!!");
             sc.next();
         }
         return sc.nextInt();
@@ -27,7 +30,7 @@ public class C {
     private static double getValidDoubleInput(Scanner sc, String prompt) {
         System.out.println(prompt);
         while (!sc.hasNextDouble()) {
-            System.out.println("Please enter a valid number!");
+            System.out.println("Please enter a valid number!!!");
             sc.next();
         }
         return sc.nextDouble();
@@ -36,6 +39,7 @@ public class C {
     private static void viewHistory(ArrayList<String> history) {
         System.out.println("\n----History----");
         if (history.isEmpty()) System.out.println("No history yet");
+
         else {
             for (int i = 0; i < history.size(); i++) {
                 System.out.println((i + 1) + ". " + history.get(i));
@@ -48,30 +52,40 @@ public class C {
             System.out.println("Enter your username: ");
             String name = sc.nextLine();
             System.out.println("Hello, " + name + " ! Let's start calculating");
+            System.out.println("Welcome to the OOP Calculator");
             System.out.println("1. Basic Calculator");
             System.out.println("2. Scientific Calculator");
             System.out.println("Enter your choice: ");
+
             int calcType = sc.nextInt();
 
             switch (calcType) {
                 case 1:
-                    basicCalc(sc);
+                    basicCalc();
                     break;
+
                 case 2:
-                    scientificCalc(sc);
+                    scientificCalc();
+
                     break;
                 default:
                     System.out.println("Invalid choice!");
+
             }
+
         }
+
     }
 
-    public static void basicCalc(Scanner sc) {
-        int num1 = 0, num2 = 0;
+    public static void basicCalc() {
+        Scanner sc = new Scanner(System.in);
         ArrayList<String> history = new ArrayList<>();
         Stack<Operation> undoStack = new Stack<>();
         Stack<Operation> redoStack = new Stack<>();
+        int choice;
+        int num1, num2;
         double result = 0;
+
 
         do {
             System.out.println("\nBasic Calculator operations: ");
@@ -87,78 +101,105 @@ public class C {
             System.out.println("0. Exit");
 
             System.out.println("Enter your choice: ");
-            int choice = getValidIntInput(sc);
+            choice = sc.nextInt();
 
             if (choice == 0) {
-                System.out.println("Thank you for using the calculator. Goodbye!");
+                System.out.println("Exiting.......");
                 break;
+
             } else if (choice == 5) {
-                viewHistory(history);
-                continue;
+                System.out.println("\n----history---");
+                if (history.isEmpty()) {
+                    System.out.println("No history yet");
+                } else {
+                    for (int i = 0; i < history.size(); i++) {
+
+                        System.out.println((i + 1) + ". " + history.get(i));
+                    }
+                }
             } else if (choice == 6) {
                 history.clear();
+
                 System.out.println("History cleared");
                 continue;
+
             } else if (choice == 7) {
-                System.out.println("\nAvailable calculator modes:");
-                System.out.println("1. Basic Calculator");
-                System.out.println("2. Scientific Calculator");
-                System.out.println("Enter choice (1-2): ");
-                int newChoice = getValidIntInput(sc);
+
+                System.out.println("\nAvailable calculator modes: ");
+                System.out.println("1. Basic clculator");
+                System.out.println("2. Scientific calculator");
+                System.out.println("Enter choicr (1-2): ");
+                int newChoice = sc.nextInt();
                 if (newChoice == 2) {
-                    scientificCalc(sc);
+
+                    scientificCalc();
                     return;
                 }
                 continue;
-            } else if (choice == 8) { // Undo
+
+            } else if (choice == 8) {
                 if (!undoStack.isEmpty()) {
+
                     Operation lastOp = undoStack.pop();
-                    redoStack.push(new Operation(lastOp.num1, lastOp.num2, result, lastOp.operation));
-                    result = lastOp.result;
-                    System.out.println("Undone to: " + lastOp.operation + " = " + result);
+
+                    redoStack.push(new Operation(lastOp.num1, lastOp.num2, lastOp.result, lastOp.operation));
+                    result = lastOp.num1;
+                    System.out.println("Undone to: " + lastOp.operation);
                 } else {
                     System.out.println("Nothing to undo");
                 }
                 continue;
-            } else if (choice == 9) { // Redo
+            } else if (choice == 9) {
+
                 if (!redoStack.isEmpty()) {
                     Operation redoOp = redoStack.pop();
-                    undoStack.push(new Operation(redoOp.num1, redoOp.num2, result, redoOp.operation));
+                    undoStack.push(new Operation(redoOp.num1, redoOp.num2, redoOp.result, redoOp.operation));
                     result = redoOp.result;
                     System.out.println("Redone to: " + redoOp.operation + " = " + result);
                 } else {
-                    System.out.println("Nothing to redo");
+
+                    System.out.println("Nothing to redo!!");
                 }
+
                 continue;
             }
+
 
             System.out.println("Enter first number");
             num1 = sc.nextInt();
             System.out.println("Enter second number");
             num2 = sc.nextInt();
             String entry = "";
+
             Operation operation = null;
 
             switch (choice) {
+
                 case 1:
+
                     result = num1 + num2;
                     entry = num1 + " + " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
                 case 2:
+
                     result = num1 - num2;
                     entry = num1 + " - " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
                 case 3:
+
                     result = num1 * num2;
                     entry = num1 + " * " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
                 case 4:
+
                     if (num2 == 0) {
                         System.out.println("Error: can't divide by zero");
                     } else {
@@ -169,7 +210,7 @@ public class C {
                     }
                     break;
                 default:
-                    System.out.println("Invalid choice!");
+                         System.out.println("Invalid choice!");
             }
             if (operation != null) {
                 undoStack.push(operation);
@@ -179,11 +220,14 @@ public class C {
         } while (true);
     }
 
-    public static void scientificCalc(Scanner sc) {
+    public static void scientificCalc() {
+        Scanner sc = new Scanner(System.in);
         ArrayList<String> history = new ArrayList<>();
         Stack<Operation> undoStack = new Stack<>();
         Stack<Operation> redoStack = new Stack<>();
-        double result = 0;
+        int choice;
+        double num1 = 0, num2 = 0;
+         double result = 0;
 
         do {
             System.out.println("\nScientific Calculator");
@@ -196,88 +240,111 @@ public class C {
             System.out.println("7. Square root");
             System.out.println("8. View history");
             System.out.println("9. Clear history");
-            System.out.println("10. Switch calculator mode");
+            System.out.println("10. Switch calculator mode ");
             System.out.println("11. Undo");
             System.out.println("12. Redo");
             System.out.println("0. Exit");
-
             System.out.println("Enter your choice");
-            int choice = getValidIntInput(sc);
+            choice = sc.nextInt();
 
             if (choice == 0) {
-                System.out.println("Exiting.....");
+                System.out.println("Exiting....");
                 break;
             } else if (choice == 8) {
-                viewHistory(history);
-                continue;
+                System.out.println("\n----history---");
+                if (history.isEmpty()) {
+                      System.out.println("No history yet");
+                } else {
+                    for (int i = 0; i < history.size(); i++) {
+                        System.out.println((i + 1) + ". " + history.get(i));
+                    }
+                }
             } else if (choice == 9) {
+
                 history.clear();
                 System.out.println("History cleared");
                 continue;
             } else if (choice == 10) {
-                System.out.println("\nAvailable calculator modes:");
-                System.out.println("1. Basic Calculator");
-                System.out.println("2. Scientific Calculator");
-                System.out.println("Enter choice (1-2):");
-                int newChoice = getValidIntInput(sc);
-                if (newChoice == 1) {
-                    basicCalc(sc);
+
+                System.out.println("\nAvailable calculator modes: ");
+                System.out.println("1. Basic clculator");
+                System.out.println("2. Scientific calculator");
+                System.out.println("Enter choicr (1-2): ");
+                int newChoice = sc.nextInt();
+                if (newChoice == 2) {
+                    scientificCalc();
                     return;
                 }
                 continue;
-            } else if (choice == 11) { // Undo
+
+            } else if (choice == 11) {
+
+
                 if (!undoStack.isEmpty()) {
                     Operation lastOp = undoStack.pop();
-                    redoStack.push(new Operation(lastOp.num1, lastOp.num2, result, lastOp.operation));
-                    result = lastOp.result;
-                    System.out.println("Undone to: " + lastOp.operation + " = " + result);
+                    redoStack.push(new Operation(lastOp.num1, lastOp.num2, lastOp.result, lastOp.operation));
+                    result = lastOp.num1;
+                    System.out.println("Undone to: " + lastOp.operation);
                 } else {
+
                     System.out.println("Nothing to undo");
                 }
                 continue;
-            } else if (choice == 12) { // Redo
+
+            } else if (choice == 12) {
+
                 if (!redoStack.isEmpty()) {
                     Operation redoOp = redoStack.pop();
-                    undoStack.push(new Operation(redoOp.num1, redoOp.num2, result, redoOp.operation));
+                    undoStack.push(new Operation(redoOp.num1, redoOp.num2, redoOp.result, redoOp.operation));
                     result = redoOp.result;
                     System.out.println("Redone to: " + redoOp.operation + " = " + result);
                 } else {
-                    System.out.println("Nothing to redo");
+                    System.out.println("Nothing to redo!!");
                 }
                 continue;
-            }
 
-            double num1 = 0, num2 = 0;
-            String entry = "";
-            Operation operation = null;
+            }
 
             if (choice >= 1 && choice <= 6) {
-                num1 = getValidDoubleInput(sc, "Enter first number: ");
-                num2 = getValidDoubleInput(sc, "Enter second number: ");
-            } else if (choice == 7) {
-                num1 = getValidDoubleInput(sc, "Enter number: ");
-            }
+                System.out.println("Enter first number: ");
+                num1 = sc.nextDouble();
+                System.out.println("Enter second number: ");
+                num2 = sc.nextDouble();
+                String entry = "";
+                Operation operation = null;
 
+
+            }
             switch (choice) {
                 case 1:
+
                     result = num1 + num2;
-                    entry = num1 + " + " + num2 + " = " + result;
-                    operation = new Operation(num1, num2, result, entry);
+
+                    String entry = num1 + " + " + num2 + " = " + result;
+                    Operation operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
                 case 2:
+
                     result = num1 - num2;
                     entry = num1 + " - " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
+
                 case 3:
+
                     result = num1 * num2;
                     entry = num1 + " * " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
+
                 case 4:
+
                     if (num2 == 0) {
                         System.out.println("Error: can't divide by zero");
                     } else {
@@ -285,21 +352,29 @@ public class C {
                         entry = num1 + " / " + num2 + " = " + result;
                         operation = new Operation(num1, num2, result, entry);
                         System.out.println("Result: " + entry);
+
+
                     }
                     break;
+
                 case 5:
-                    num1 = getValidDoubleInput(sc, "Enter base: ");
-                    num2 = getValidDoubleInput(sc, "Enter exponent: ");
+                    System.out.println("Enter base: ");
+                    num1 = sc.nextInt();
+                    System.out.println("Enter exponent: ");
+                    num2 = sc.nextInt();
                     result = Math.pow(num1, num2);
                     entry = num1 + " ^ " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
                 case 6:
+
                     result = num1 % num2;
                     entry = num1 + " % " + num2 + " = " + result;
                     operation = new Operation(num1, num2, result, entry);
                     System.out.println("Result: " + entry);
+
                     break;
                 case 7:
                     result = Math.sqrt(num1);
@@ -307,14 +382,21 @@ public class C {
                     operation = new Operation(num1, 0, result, entry);
                     System.out.println("Result: " + entry);
                     break;
+
+
                 default:
                     System.out.println("Invalid choice");
             }
+
+            Operation operation = null;
             if (operation != null) {
                 undoStack.push(operation);
+                String entry = "";
                 history.add(entry);
                 redoStack.clear();
             }
+
         } while (true);
+
     }
 }
