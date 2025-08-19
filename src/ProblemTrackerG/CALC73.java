@@ -1,21 +1,20 @@
 package ProblemTrackerG;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class VariableStorage {
-    private String[] names;
-    private double[] values;
-    private int count;
 
-    public VariableStorage() {
-        names = new String[100];  // Space for 100 variables
-        values = new double[100];
-        count = 0;
-    }
+class Variablestorage{
+private String[] name;
+private double[] values;
+private int count;
+    private Object[] names;
 
+    public Variablestorage() {
+    String[] names = new String[100];
+    values = new double[100];
+    count = 0;
+}
     public void set(String name, double value) {
-        // Check if variable already exists
         for (int i = 0; i < count; i++) {
             if (names[i].equals(name)) {
                 values[i] = value;
@@ -23,8 +22,6 @@ class VariableStorage {
                 return;
             }
         }
-
-        // Add new variable
         if (count < names.length) {
             names[count] = name;
             values[count] = value;
@@ -47,7 +44,6 @@ class VariableStorage {
     public void remove(String name) {
         for (int i = 0; i < count; i++) {
             if (names[i].equals(name)) {
-                // Shift all elements after this one
                 for (int j = i; j < count - 1; j++) {
                     names[j] = names[j + 1];
                     values[j] = values[j + 1];
@@ -82,12 +78,17 @@ class VariableStorage {
     }
 }
 
-public class C {
+
+
+
+public class CALC73 {
     private static VariableStorage variables = new VariableStorage();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("Enter your username: ");
+        String name = sc.nextLine();
+        System.out.println("Hello, " + name + " ! Let's start calculating");
         System.out.println("Welcome to the OOP Calculator");
         System.out.println("1. Basic Calculator");
         System.out.println("2. Scientific Calculator");
@@ -95,7 +96,7 @@ public class C {
         System.out.print("Enter your choice: ");
         int calcType = sc.nextInt();
 
-        switch (calcType){
+        switch (calcType) {
             case 1:
                 basicCalc();
                 break;
@@ -115,39 +116,40 @@ public class C {
         int choice;
 
         do {
-            System.out.println("\nVariable Storage Menu");
-            System.out.println("1. Set variable");
+            System.out.println("\nVariable Storage Menu!!!");
+            System.out.println("1. Set variable ");
             System.out.println("2. Get variable value");
             System.out.println("3. Remove variable");
-            System.out.println("4. List all variables");
-            System.out.println("5. Back to main menu");
-            System.out.print("Enter choice: ");
+            System.out.println("4. List all variables  ");
+            System.out.println("5. Back to main menu ");
+            System.out.println("Enter your choice:  ");
 
             choice = sc.nextInt();
-            sc.nextLine(); // Consume newline
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter variable name: ");
+                    System.out.println("Enter variable name: ");
                     String varName = sc.nextLine();
-                    System.out.print("Enter value: ");
+                    System.out.println("Enter value: ");
                     double value = sc.nextDouble();
                     variables.set(varName, value);
                     break;
 
                 case 2:
-                    System.out.print("Enter variable name: ");
+                    System.out.println("Enter variable name: ");
                     String getVarName = sc.nextLine();
                     Double varValue = variables.get(getVarName);
                     if (varValue != null) {
-                        System.out.println("Value of '" + getVarName + "' is " + varValue);
+                        System.out.println("Value of " + getVarName + " is " + varValue);
                     } else {
-                        System.out.println("Variable '" + getVarName + "' not found");
+                        System.out.println("Variable " + getVarName + " not found ");
+
                     }
                     break;
 
                 case 3:
-                    System.out.print("Enter variable name: ");
+                    System.out.println("Enter variable name: ");
                     String removeVarName = sc.nextLine();
                     variables.remove(removeVarName);
                     break;
@@ -162,19 +164,23 @@ public class C {
                     return;
 
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Invalid choice!!!");
             }
+
         } while (choice != 5);
+
     }
 
     public static void basicCalc() {
         Scanner sc = new Scanner(System.in);
+        ArrayList<String> history = new ArrayList<>();
         int choice;
         int num1 = 0, num2 = 0;
         double result = 0;
 
+
         do {
-            System.out.println("\nBasic Calculator operations: ");
+            System.out.println("\nBasic Calculator operations:  ");
             System.out.println("1. Add");
             System.out.println("2. Subtract");
             System.out.println("3. Multiply");
@@ -182,38 +188,65 @@ public class C {
             System.out.println("5. Compare numbers");
             System.out.println("6. Switch calculator mode");
             System.out.println("7. Variable Storage");
+            System.out.println("8. View history");
+            System.out.println("9. Clear history");
             System.out.println("0. Exit");
 
-            System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
+            System.out.println("Enter your choice:  ");
 
+            choice = sc.nextInt();
             if (choice == 0) {
+
                 System.out.println("Exiting.....");
                 break;
+
             } else if (choice == 6) {
+
                 System.out.println("\nAvailable calculator modes: ");
                 System.out.println("1. Basic Calculator");
                 System.out.println("2. Scientific Calculator");
                 System.out.println("3. Variable Storage");
                 System.out.print("Enter choice (1-3): ");
+
                 int newChoice = sc.nextInt();
                 if (newChoice == 2) {
+
                     scientificCalc();
                     return;
+
                 } else if (newChoice == 3) {
                     variableStorage();
                     return;
+
                 }
                 continue;
+
             } else if (choice == 7) {
                 variableStorage();
                 return;
+            }
+            else if (choice == 8) {
+                System.out.println("\n----history----");
+                if (history.isEmpty()) System.out.println("No history yet");
+                else {
+                    for (int i = 0; i < history.size(); i++) {
+                        System.out.println((i + 1) + ". " + history.get(i));
+                    }
+                }
+                continue;
+
+            } else if (choice == 9) {
+                history.clear();
+                System.out.println("History cleared");
+                continue;
+
             }
 
             System.out.print("Enter first number: ");
             num1 = sc.nextInt();
             System.out.print("Enter second number: ");
             num2 = sc.nextInt();
+            String entry = "";
 
             switch (choice) {
                 case 1:
@@ -252,12 +285,15 @@ public class C {
 
                 default:
                     System.out.println("Invalid choice");
+
             }
+            history.add(entry);
         } while (choice != 0);
     }
 
     public static void scientificCalc() {
         Scanner sc = new Scanner(System.in);
+        ArrayList<String> history = new ArrayList<>();
         int choice;
         double num1 = 0, num2 = 0, result = 0;
 
@@ -272,15 +308,17 @@ public class C {
             System.out.println("7. Square root");
             System.out.println("8. Switch calculator mode");
             System.out.println("9. Compare numbers");
-            System.out.println("10. Variable Storage");
+            System.out.println("10. View history");
+            System.out.println("11. Clear history");
             System.out.println("0. Exit");
 
-            System.out.print("Enter your choice: ");
+            System.out.println("Enter your choice: ");
             choice = sc.nextInt();
 
             if (choice == 0) {
-                System.out.println("Exiting.....");
+                System.out.println("Exiting....");
                 break;
+
             } else if (choice == 8) {
                 System.out.println("\nAvailable calculator modes: ");
                 System.out.println("1. Basic Calculator");
@@ -297,8 +335,19 @@ public class C {
                 }
                 continue;
             } else if (choice == 10) {
-                variableStorage();
-                return;
+                System.out.println("\n----history----");
+                if (history.isEmpty()) System.out.println("No history yet");
+                else {
+                    for (int i = 0; i < history.size(); i++) {
+                        System.out.println((i + 1) + ". " + history.get(i));
+                    }
+                }
+                continue;
+
+            } else if (choice == 11) {
+                history.clear();
+                System.out.println("History cleared");
+                continue;
             }
 
             if (choice >= 1 && choice <= 6 || choice == 9) {
@@ -306,7 +355,8 @@ public class C {
                 num1 = sc.nextDouble();
                 System.out.print("Enter second number: ");
                 num2 = sc.nextDouble();
-            }
+               }
+            String entry = "";
 
             switch (choice) {
                 case 1:
@@ -362,7 +412,11 @@ public class C {
 
                 default:
                     System.out.println("Invalid choice");
+
+
             }
+            history.add(entry);
         } while (choice != 0);
+
     }
 }
