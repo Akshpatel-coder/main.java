@@ -2,18 +2,17 @@ package ProblemTrackerG;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+class VariableStorage {
+    private String[] names;
+    private double[] values;
+    private int count;
 
-class Variablestorage{
-private String[] name;
-private double[] values;
-private int count;
-    private Object[] names;
+    public VariableStorage() {
+        names = new String[100];
+        values = new double[100];
+        count = 0;
+    }
 
-    public Variablestorage() {
-    String[] names = new String[100];
-    values = new double[100];
-    count = 0;
-}
     public void set(String name, double value) {
         for (int i = 0; i < count; i++) {
             if (names[i].equals(name)) {
@@ -33,7 +32,7 @@ private int count;
     }
 
     public Double get(String name) {
-        for ( int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             if (names[i].equals(name)) {
                 return values[i];
             }
@@ -78,9 +77,6 @@ private int count;
     }
 }
 
-
-
-
 public class CALC73 {
     private static VariableStorage variables = new VariableStorage();
 
@@ -122,34 +118,33 @@ public class CALC73 {
             System.out.println("3. Remove variable");
             System.out.println("4. List all variables  ");
             System.out.println("5. Back to main menu ");
-            System.out.println("Enter your choice:  ");
+            System.out.print("Enter your choice:  ");
 
             choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Enter variable name: ");
+                    System.out.print("Enter variable name: ");
                     String varName = sc.nextLine();
-                    System.out.println("Enter value: ");
+                    System.out.print("Enter value: ");
                     double value = sc.nextDouble();
                     variables.set(varName, value);
                     break;
 
                 case 2:
-                    System.out.println("Enter variable name: ");
+                    System.out.print("Enter variable name: ");
                     String getVarName = sc.nextLine();
                     Double varValue = variables.get(getVarName);
                     if (varValue != null) {
                         System.out.println("Value of " + getVarName + " is " + varValue);
                     } else {
                         System.out.println("Variable " + getVarName + " not found ");
-
                     }
                     break;
 
                 case 3:
-                    System.out.println("Enter variable name: ");
+                    System.out.print("Enter variable name: ");
                     String removeVarName = sc.nextLine();
                     variables.remove(removeVarName);
                     break;
@@ -168,7 +163,6 @@ public class CALC73 {
             }
 
         } while (choice != 5);
-
     }
 
     public static void basicCalc() {
@@ -177,7 +171,6 @@ public class CALC73 {
         int choice;
         int num1 = 0, num2 = 0;
         double result = 0;
-
 
         do {
             System.out.println("\nBasic Calculator operations:  ");
@@ -191,41 +184,31 @@ public class CALC73 {
             System.out.println("8. View history");
             System.out.println("9. Clear history");
             System.out.println("0. Exit");
-
-            System.out.println("Enter your choice:  ");
+            System.out.print("Enter your choice:  ");
 
             choice = sc.nextInt();
             if (choice == 0) {
-
                 System.out.println("Exiting.....");
                 break;
-
             } else if (choice == 6) {
-
                 System.out.println("\nAvailable calculator modes: ");
                 System.out.println("1. Basic Calculator");
                 System.out.println("2. Scientific Calculator");
                 System.out.println("3. Variable Storage");
                 System.out.print("Enter choice (1-3): ");
-
                 int newChoice = sc.nextInt();
                 if (newChoice == 2) {
-
                     scientificCalc();
                     return;
-
                 } else if (newChoice == 3) {
                     variableStorage();
                     return;
-
                 }
                 continue;
-
             } else if (choice == 7) {
                 variableStorage();
                 return;
-            }
-            else if (choice == 8) {
+            } else if (choice == 8) {
                 System.out.println("\n----history----");
                 if (history.isEmpty()) System.out.println("No history yet");
                 else {
@@ -234,60 +217,71 @@ public class CALC73 {
                     }
                 }
                 continue;
-
             } else if (choice == 9) {
                 history.clear();
                 System.out.println("History cleared");
                 continue;
-
             }
 
-            System.out.print("Enter first number: ");
-            num1 = sc.nextInt();
-            System.out.print("Enter second number: ");
-            num2 = sc.nextInt();
+            if (choice >= 1 && choice <= 5) {
+                System.out.print("Enter first number: ");
+                num1 = sc.nextInt();
+                System.out.print("Enter second number: ");
+                num2 = sc.nextInt();
+            }
+
             String entry = "";
 
             switch (choice) {
                 case 1:
                     result = num1 + num2;
+                    entry = "Addition: " + num1 + " + " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
                     break;
 
                 case 2:
                     result = num1 - num2;
+                    entry = "Subtraction: " + num1 + " - " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
                     break;
 
                 case 3:
                     result = num1 * num2;
+                    entry = "Multiplication: " + num1 + " * " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
                     break;
 
                 case 4:
                     if (num2 == 0) {
                         System.out.println("Error: Can't divide by zero");
+                        entry = "Division: " + num1 + " / " + num2 + " = Error (Division by zero)";
                     } else {
                         result = (double) num1 / num2;
+                        entry = "Division: " + num1 + " / " + num2 + " = " + result;
                         System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
                     }
                     break;
 
                 case 5:
                     if (num1 > num2) {
+                        entry = "Comparison: " + num1 + " > " + num2;
                         System.out.println("Result: " + num1 + " is greater than " + num2);
                     } else if (num1 < num2) {
+                        entry = "Comparison: " + num1 + " < " + num2;
                         System.out.println("Result: " + num1 + " is less than " + num2);
                     } else {
+                        entry = "Comparison: " + num1 + " = " + num2;
                         System.out.println("Result: " + num1 + " is equal to " + num2);
                     }
                     break;
 
                 default:
                     System.out.println("Invalid choice");
-
             }
-            history.add(entry);
+
+            if (!entry.isEmpty()) {
+                history.add(entry);
+            }
         } while (choice != 0);
     }
 
@@ -311,14 +305,13 @@ public class CALC73 {
             System.out.println("10. View history");
             System.out.println("11. Clear history");
             System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
 
-            System.out.println("Enter your choice: ");
             choice = sc.nextInt();
 
             if (choice == 0) {
                 System.out.println("Exiting....");
                 break;
-
             } else if (choice == 8) {
                 System.out.println("\nAvailable calculator modes: ");
                 System.out.println("1. Basic Calculator");
@@ -343,7 +336,6 @@ public class CALC73 {
                     }
                 }
                 continue;
-
             } else if (choice == 11) {
                 history.clear();
                 System.out.println("History cleared");
@@ -353,70 +345,85 @@ public class CALC73 {
             if (choice >= 1 && choice <= 6 || choice == 9) {
                 System.out.print("Enter first number: ");
                 num1 = sc.nextDouble();
-                System.out.print("Enter second number: ");
-                num2 = sc.nextDouble();
-               }
+                if (choice != 7) {
+                    System.out.print("Enter second number: ");
+                    num2 = sc.nextDouble();
+                }
+            } else if (choice == 7) {
+                System.out.print("Enter number: ");
+                num1 = sc.nextDouble();
+            }
+
             String entry = "";
 
             switch (choice) {
                 case 1:
                     result = num1 + num2;
+                    entry = "Addition: " + num1 + " + " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
                     break;
 
                 case 2:
                     result = num1 - num2;
+                    entry = "Subtraction: " + num1 + " - " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
                     break;
 
                 case 3:
                     result = num1 * num2;
+                    entry = "Multiplication: " + num1 + " * " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
                     break;
 
                 case 4:
                     if (num2 == 0) {
                         System.out.println("Error: can't divide by zero");
+                        entry = "Division: " + num1 + " / " + num2 + " = Error (Division by zero)";
                     } else {
                         result = num1 / num2;
+                        entry = "Division: " + num1 + " / " + num2 + " = " + result;
                         System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
                     }
                     break;
 
                 case 5:
                     result = Math.pow(num1, num2);
+                    entry = "Power: " + num1 + " ^ " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " ^ " + num2 + " = " + result);
                     break;
 
                 case 6:
                     result = num1 % num2;
+                    entry = "Modulus: " + num1 + " % " + num2 + " = " + result;
                     System.out.println("Result: " + num1 + " % " + num2 + " = " + result);
                     break;
 
                 case 7:
-                    System.out.print("Enter number: ");
-                    num1 = sc.nextDouble();
                     result = Math.sqrt(num1);
+                    entry = "Square root: sqrt(" + num1 + ") = " + result;
                     System.out.println("Result: sqrt(" + num1 + ") = " + result);
                     break;
 
                 case 9:
                     if (num1 > num2) {
+                        entry = "Comparison: " + num1 + " > " + num2;
                         System.out.println("Result: " + num1 + " is greater than " + num2);
                     } else if (num1 < num2) {
+                        entry = "Comparison: " + num1 + " < " + num2;
                         System.out.println("Result: " + num1 + " is less than " + num2);
                     } else {
+                        entry = "Comparison: " + num1 + " = " + num2;
                         System.out.println("Result: " + num1 + " is equal to " + num2);
                     }
                     break;
 
                 default:
                     System.out.println("Invalid choice");
-
-
             }
-            history.add(entry);
-        } while (choice != 0);
 
+            if (!entry.isEmpty()) {
+                history.add(entry);
+            }
+        } while (choice != 0);
     }
 }
