@@ -215,13 +215,18 @@ public class CALC69 {
                 System.out.println("History cleared");
             } else if (choice == 10) {
                 System.out.println("\nAvailable operations: 1-13 (see menu)");
+
             } else if (choice == 11) {
-                System.out.print("\nSwitch to (1)Basic or (2)Scientific? ");
-                int mode = sc.nextInt();
-                if (mode == 1) {
+                System.out.println("\nAvailable calculator modes: ");
+                System.out.println("1. Basic Calculator");
+                System.out.println("2. Scientific Calculator");
+                System.out.println("Enter choice (1-2):");
+                int newChoice = sc.nextInt();
+                if (newChoice == 1) {
                     basicCalc();
                     return;
                 }
+                continue;
             } else if (choice == 13) {
                 System.out.println("\n== Operation Statistics ==");
                 System.out.println("Additions: " + adds);
